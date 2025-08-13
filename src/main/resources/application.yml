@@ -3,8 +3,13 @@ server:
   servlet:
     context-path: /api
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
   application:
     name: yu-picture-backend
+  profiles:
+    active: local
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/yu_picture
