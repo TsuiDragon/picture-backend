@@ -1,5 +1,7 @@
 package com.yupi.yupicturebackend.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yupi.yupicturebackend.model.dto.user.UserQueryRequest;
 import com.yupi.yupicturebackend.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yupi.yupicturebackend.model.vo.LoginUserVO;
@@ -57,4 +59,6 @@ public interface UserService extends IService<User> {
     UserVO getUserVO(User user);
 
     List<UserVO> getUserVOList(List<User> userList);
+
+    QueryWrapper<User> getQueryWrapper(UserQueryRequest userQueryRequest);
 }
