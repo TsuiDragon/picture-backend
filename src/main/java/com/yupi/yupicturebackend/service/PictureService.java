@@ -32,6 +32,8 @@ public interface PictureService extends IService<Picture> {
                             PictureUploadRequest pictureUploadRequest,
                             User loginUser);
 
+    void fillReviewParams(Picture picture, User loginUser);
+
     QueryWrapper<Picture> getQueryWrapper(PictureQueryRequest pictureQueryRequest);
 
     PictureVO getPictureVO(Picture picture, HttpServletRequest request);
