@@ -1,5 +1,6 @@
 package com.yupi.yupicturebackend.manager.upload;
 
+import cn.hutool.core.io.FileTypeUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpResponse;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.utils.HttpClientUtils;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -81,7 +83,13 @@ public class UrlPictureUpload extends PictureUploadTemplate {
         String fileUrl = (String) inputSource;  
         // 从 URL 中提取文件名
         //return FileUtil.mainName(fileUrl);
-        return FileUtil.getName(fileUrl);
+        // 1. 下载图片获取字节数组（或使用之前下载的本地文件流）
+        byte[] imageBytes = HttpUtil.downloadBytes(fileUrl);
+        String end = FileTypeUtil.getType(new ByteArrayInputStream(imageBytes));
+        log.info("end={}", end);
+        String start =  FileUtil.mainName(fileUrl);
+        log.info("start={}", start);
+        return start + "." + end;
     }  
   
     @Override  
