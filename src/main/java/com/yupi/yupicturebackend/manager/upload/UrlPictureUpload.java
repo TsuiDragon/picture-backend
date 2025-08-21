@@ -86,9 +86,7 @@ public class UrlPictureUpload extends PictureUploadTemplate {
         // 1. 下载图片获取字节数组（或使用之前下载的本地文件流）
         byte[] imageBytes = HttpUtil.downloadBytes(fileUrl);
         String end = FileTypeUtil.getType(new ByteArrayInputStream(imageBytes));
-        log.info("end={}", end);
         String start =  FileUtil.mainName(fileUrl);
-        log.info("start={}", start);
         return start + "." + end;
     }  
   
